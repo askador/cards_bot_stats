@@ -1,3 +1,4 @@
+import { spawn } from "child_process";
 import {myChart} from "/js/home/chart.js"
 
 $('input[type=range]').on('input', function(e){
@@ -14,14 +15,15 @@ $('input[type=range]').on('input', function(e){
   var val = e.target.value
   socket.emit('browser_slider', val);
   socket.on('chart_data', function (sample) {
-    try {
-        myChart.data.labels = (sample['date']);
-        myChart.data.datasets[1].data = (sample['count']);
+    console.log(sample)
+    // try {
+    //     myChart.data.labels = (sample['date']);
+    //     myChart.data.datasets[1].data = (sample['count']);
 
-        myChart.data.datasets[0].data = (sample['average_list'])
-        myChart.update()
-      } 
-    catch (error) {}
+    //     myChart.data.datasets[0].data = (sample['average_list'])
+    //     myChart.update()
+    //   } 
+    // catch (error) {}
       
   })
 
