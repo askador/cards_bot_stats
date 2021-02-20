@@ -37,8 +37,25 @@ io.sockets.on('connection', function (socket) {
       if (val == 1) {
         chart_interval = setInterval(function(){        
           db.query("SELECT date, count FROM test_stats WHERE id >= (SELECT max(id) FROM test_stats) - 20", function (err, results) { 
-            // console.log(results)
-            socket.emit('chart_data', results)
+
+              var date = []
+              var count = []
+              var average = 0
+              var average_list = []
+
+              results.forEach(element => {
+                  date.push(element['date'].toString().split(' ')[4])
+                  count.push(element['count'])
+                  average += element['count']
+                })
+
+              average /= date.length
+
+              for (let index = 0; index < date.length; index++) {
+                  average_list.push(average)
+                
+              }
+            socket.emit('chart_data', {date, count, average_list})
           
         })}, 1000);
       }
