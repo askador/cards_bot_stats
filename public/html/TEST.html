@@ -19,7 +19,7 @@
 
                 var val = e.target.value
 
-                var socket = io();
+                var socket = io.connect();
 
                 socket.emit('browser_slider', val);
                 socket.on('data', function (sample) {
