@@ -14,7 +14,6 @@ $('input[type=range]').on('input', function(e){
 
   socket.emit('browser_slider', val);
   socket.on('chart_data', function (sample) {
-    console.log(sample)
     try {
         myChart.data.labels = (sample['date']);
         myChart.data.datasets[1].data = (sample['count']);
