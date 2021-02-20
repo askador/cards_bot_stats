@@ -30,12 +30,12 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/public/html/TEST.html');
 });
 
-io.sockets.on('connection', function (socket) {
-  socket.on('browser_slider', function(val) {        
-    console.log("DASTA")
-    // socket.emit('chart_data', "get_data(results)")
-  });
-})
+// io.sockets.on('connection', function (socket) {
+//   socket.on('browser_slider', function(val) {        
+//     console.log("DASTA")
+//     // socket.emit('chart_data', "get_data(results)")
+//   });
+// })
 
 server.listen(port, function(){
   console.log('Server started')
