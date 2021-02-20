@@ -31,6 +31,7 @@ app.get('/', function(req, res){
 });
 
 var chart_interval = null
+var activity_interval = null
 
 io.sockets.on('connection', function (socket) {
     socket.on('browser_slider', function(val) {   
