@@ -68,7 +68,6 @@ io.sockets.on('connection', function (socket) {
           
     //     })}, 1000);
 
-    }  
     // else if (val == 2) {
     //   chart_interval = setInterval(function(){        
     //     db.query("SELECT date, count FROM test_stats WHERE id >= (SELECT max(id) FROM test_stats) - 100", function (err, results) { 
