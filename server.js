@@ -33,6 +33,8 @@ app.get('/', function(req, res){
 io.sockets.on('connection', function (socket) {
   socket.on('browser_slider', function(val) {        
       socket.emit('chart_data', "get_data(results)")
+  })
+})
     // function get_data(results) {
     //   var date = []
     //   var count = []
@@ -85,8 +87,9 @@ io.sockets.on('connection', function (socket) {
     //       })}, 1000);
         
     // }
-  });
-})
+
+//   });
+// })
 
 server.listen(port, function(){
   console.log('Server started')
