@@ -10,7 +10,7 @@ $('input[type=range]').on('input', function(e){
   'backgroundSize': (val - min) * 100 / (max - min) + '% 100%'
   });
 
-  var socket = io();
+  var socket = io.connect("https://test-stats-site.herokuapp.com/", { secure: true, reconnection: true, rejectUnauthorized: false });
 
   socket.emit('browser_slider', val);
   socket.on('chart_data', function (sample) {

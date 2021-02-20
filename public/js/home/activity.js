@@ -1,7 +1,7 @@
 $(document).ready(function(){
   activity = $('.activity');
 
-  var socket = io();
+  var socket = io.connect("https://test-stats-site.herokuapp.com/", { secure: true, reconnection: true, rejectUnauthorized: false });
 
   slider = $('input[type=range]')
 
