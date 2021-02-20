@@ -38,7 +38,7 @@ io.sockets.on('connection', function (socket) {
       clearInterval(chart_interval);     
       if (val == 1) {
         chart_interval = setInterval(function(){        
-          db.query("SELECT date, count FROM test_stats WHERE id >= (SELECT max(id) FROM test_stats) - 20", function (err, results) { 
+          db.query("SELECT date, count FROM test_stats WHERE id >= (SELECT max(id) FROM test_stats) - 500", function (err, results) { 
 
               var date = []
               var count = []
