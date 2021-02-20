@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     text = $('.text');
 
-    var socket = io.connect('http://localhost:8080');
+    var socket = io();
     socket.emit('get_text');
     socket.on('text', function (data) {
         text.html(data);

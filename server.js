@@ -113,6 +113,69 @@ io.sockets.on('connection', function (socket) {
           
     }
     })
+
+    socket.on('get_activity', function (val) {
+
+      function get_average(data) {
+        var average = 0
+  
+        data.forEach(element => {
+            average += element['count']
+        })
+  
+        average /= data.length
+
+        return average.toFixed(2)
+      }
+
+      clearInterval(activity_interval);
+      if (val == 1) {
+        activity_interval = setInterval(function(){        
+          db.query("SELECT date FROM test_stats", function (err, results) { 
+            db.query("SELECT count FROM test_stats", function (err, count) { 
+
+            socket.emit('activity', `Активность: +${results.length}%<br>
+                                     Среднее значение: ${get_average(count)}`)
+          })})
+        }, 1000);
+
+      }  
+
+      else if (val == 2) {
+        activity_interval = setInterval(function(){        
+          db.query("SELECT max(id) FROM test_stats", function (err, results) { 
+            db.query("SELECT count FROM test_stats WHERE id >= (SELECT max(id) FROM test_stats) - 100", function (err, count) { 
+              socket.emit('activity', `Активность: +${results[0]['max(id)']}%<br>
+                                      Среднее значение: ${get_average(count)}`)
+          })})
+        }, 1000);
+
+      }  
+      else if (val == 3) {
+        activity_interval = setInterval(function(){        
+          db.query("SELECT max(id) FROM test_stats", function (err, results) { 
+            db.query("SELECT count FROM test_stats WHERE id >= (SELECT max(id) FROM test_stats) - 10", function (err, count) { 
+              socket.emit('activity', `Активность: +${results[0]['max(id)']}%<br>
+                                      Среднее значение: ${get_average(count)}`)
+          })})
+        }, 1000);
+
+      }  
+    })
+
+
+    socket.on('get_text', function () {
+      setInterval(function(){        
+        db.query("SELECT count(id) FROM test_stats", function (err, results) { 
+          db.query("SELECT max(id) FROM test_stats", function (er, resu) {
+              socket.emit('text', `Пользователей: ${results[0]['count(id)']}<br> 
+                                   Чатов: ${resu[0]['max(id)']}<br>
+                                   Игр: ${5545} <br>`)
+          })
+          
+        })}, 1000);
+    })
+
 })
 
 

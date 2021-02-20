@@ -1,7 +1,7 @@
 $(document).ready(function(){
   activity = $('.activity');
 
-  var socket = io.connect('http://localhost:8080');
+  var socket = io();
 
   slider = $('input[type=range]')
 
