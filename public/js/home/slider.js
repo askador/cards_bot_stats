@@ -9,7 +9,7 @@ $('input[type=range]').on('input', function(e){
   'backgroundSize': (val - min) * 100 / (max - min) + '% 100%'
   });
 
-  var socket = io.connect('http://localhost:8080');
+  var socket = io.connect();
 
   var val = e.target.value
   socket.emit('browser_slider', val);

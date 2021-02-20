@@ -49,28 +49,31 @@
         </header>
 
 
-        <h1>HELLO</h1>
-        <input type="range" min="0" max="5" value="3">
-        <script type="text/javascript">
+        <div class="info">
+            <div class="info__text">
+                <div class="title">Общая статистика<br></div>
+                <!-- <div class="activity">
+                    <script type="text/javascript" src="/js/home/activity.js"></script>
+                </div>
 
-            $('input[type=range]').on('input', function(e){
-
-                var val = e.target.value
-
-                var socket = io.connect();
-
-                socket.emit('browser_slider', val);
-                socket.on('data', function (sample) {
-                    var d=document.createElement('div');
-                    d.className='myClass';
-                    document.body.appendChild(d);
-
-                    var div = $('.myClass')
-                    div.html("sdfsd");
-
-                });
-            })  
-
-        </script>
+                <div class="text">   
+                    <script type="text/javascript" src="/js/home/text.js"></script>
+                </div> -->
+                
+            </div>
+            
+            <div class="info__chart">
+                <div class="chart">
+                    <canvas id="myChart"></canvas>
+                    <script type="module" type="text/javascript" src="/js/home/chart.js"></script>
+                    <script type="module" type="text/javascript" src="/js/home/resize.js"></script>
+                </div>
+                <div class="slider">
+                    <!-- 1 year ->  6 months  ->  1 month  ->  1 week  ->  1 day -->
+                    <input type="range" min="0" max="5" value="3">
+                    <script type="module" type="text/javascript"src="/js/home/slider.js"></script>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
