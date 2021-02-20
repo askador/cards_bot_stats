@@ -1,0 +1,91 @@
+html, body {
+  height: 100%;
+  margin: 0px;
+  background: linear-gradient(-45deg, #12c2e9, #a041cf, #9736bd);
+  background-size: 2000% 2000%;
+  animation: gradient 20s ease infinite;
+
+  font-family: 'Franklin Gothic Medium';
+
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 90% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.header:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #3657A3;
+  border-radius: 0px 0px 15px 15px;
+  z-index: 2;
+}
+
+.header__body {
+  max-width: 1720px;
+  margin: 0px auto;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  align-items: center;
+}
+.header__logo {
+  color: white;
+  text-decoration: none;
+  font-size: 25px;
+  margin-left: 20px;
+  z-index: 3;
+}
+
+.header__logo:hover {
+  transform: scale(1.05);
+}
+
+.header__burger {
+  display: none;
+}
+
+.header__burger:hover {
+  cursor: pointer;
+}
+
+.header__list {
+  display: flex;
+  margin-right: 40px;
+}
+
+.header__list li {
+  list-style: none;
+  margin-left: 50px;
+  z-index: 2;
+}
+.header__list li:hover {
+  transform: scale(1.15);
+}
+
+.header__link {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+

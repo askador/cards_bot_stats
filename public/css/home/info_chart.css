@@ -1,0 +1,17 @@
+
+.info__chart {
+    /*outline: 2px solid black;*/ 
+
+    width: 70%;
+    height: 90%;
+
+    padding-top: 30px;
+
+}
+
+.chart {
+    /* outline: 2px solid black;  */
+
+    width: 100%;
+    height: auto;
+}
