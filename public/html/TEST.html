@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js"></script>
 
         <title>STATS</title>    
     </head>
@@ -10,6 +12,27 @@
     <body>
 
         <h1>HELLO</h1>
+        <input type="range" min="0" max="5" value="3">
+        <script type="text/javascript">
 
+            $('input[type=range]').on('input', function(e){
+
+                var val = e.target.value
+
+                var socket = io();
+
+                socket.emit('browser_slider', val);
+                socket.on('data', function (sample) {
+                    var d=document.createElement('div');
+                    d.className='myClass';
+                    document.body.appendChild(d);
+
+                    var div = $('.myClass')
+                    div.html("sdfsd");
+
+                });
+            })  
+
+        </script>
     </body>
 </html>
