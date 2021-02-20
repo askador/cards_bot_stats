@@ -31,9 +31,16 @@ app.get('/', function(req, res){
 });
 
 io.sockets.on('connection', function (socket) {
-  socket.on('browser_slider', function(val) {        
-      socket.emit('chart_data', "get_data(results)")
-  })
+    socket.on('browser_slider', function(val) {        
+      if (val == 1) {
+        chart_interval = setInterval(function(){        
+          db.query("SELECT date, count FROM test_stats WHERE id >= (SELECT max(id) FROM test_stats) - 20", function (err, results) { 
+
+          socket.emit('chart_data', get_data(results))
+          
+        })}, 1000);
+      }
+    })
 })
     // function get_data(results) {
     //   var date = []
