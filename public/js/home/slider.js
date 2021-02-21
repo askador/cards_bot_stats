@@ -10,7 +10,16 @@ $('input[type=range]').on('input', function(e){
   'backgroundSize': (val - min) * 100 / (max - min) + '% 100%'
   });
 
-  var socket = io.connect("https://test-stats-site.herokuapp.com/", { secure: true, reconnection: true, rejectUnauthorized: false });
+  var socket = io.connect("https://test-stats-site.herokuapp.com/", {       
+    reconnectionDelay: 1000,
+    reconnection:true,
+    reconnectionAttempts: 10,
+    transports: ['websocket'],
+    agent: false, // [2] Please don't set this to true
+    upgrade: false,
+    rejectUnauthorized: false 
+}
+);
 
   socket.emit('browser_slider', val);
   socket.on('chart_data', function (sample) {
