@@ -34,86 +34,86 @@ var chart_interval = null
 var activity_interval = null
 
 io.sockets.on('connection', function (socket) {
-    // socket.on('browser_slider', function(val) {   
-    //   clearInterval(chart_interval);     
-    //   if (val == 1) {
-    //     chart_interval = setInterval(function(){        
-    //       db.query("SELECT date, count FROM test_stats WHERE id >= (SELECT max(id) FROM test_stats) - 500", function (err, results) { 
+    socket.on('browser_slider', function(val) {   
+      clearInterval(chart_interval);     
+      if (val == 1) {
+        chart_interval = setInterval(function(){        
+          db.query("SELECT date, count FROM test_stats WHERE id >= (SELECT max(id) FROM test_stats) - 500", function (err, results) { 
 
-    //           var date = []
-    //           var count = []
-    //           var average = 0
-    //           var average_list = []
+              var date = []
+              var count = []
+              var average = 0
+              var average_list = []
 
-    //           results.forEach(element => {
-    //               date.push(element['date'].toString().split(' ')[4])
-    //               count.push(element['count'])
-    //               average += element['count']
-    //             })
+              results.forEach(element => {
+                  date.push(element['date'].toString().split(' ')[4])
+                  count.push(element['count'])
+                  average += element['count']
+                })
 
-    //           average /= date.length
+              average /= date.length
 
-    //           for (let index = 0; index < date.length; index++) {
-    //               average_list.push(average)
+              for (let index = 0; index < date.length; index++) {
+                  average_list.push(average)
                 
-    //           }
-    //         socket.emit('chart_data', {date, count, average_list})
+              }
+            socket.emit('chart_data', {date, count, average_list})
           
-    //     })}, 1000);
-    //   }
-    //   else if (val == 2) {
-    //     chart_interval = setInterval(function(){        
-    //       db.query("SELECT date, count FROM test_stats WHERE id >= (SELECT max(id) FROM test_stats) - 100", function (err, results) { 
+        })}, 1000);
+      }
+      else if (val == 2) {
+        chart_interval = setInterval(function(){        
+          db.query("SELECT date, count FROM test_stats WHERE id >= (SELECT max(id) FROM test_stats) - 100", function (err, results) { 
 
-    //         var date = []
-    //           var count = []
-    //           var average = 0
-    //           var average_list = []
+            var date = []
+              var count = []
+              var average = 0
+              var average_list = []
 
-    //           results.forEach(element => {
-    //               date.push(element['date'].toString().split(' ')[4])
-    //               count.push(element['count'])
-    //               average += element['count']
-    //             })
+              results.forEach(element => {
+                  date.push(element['date'].toString().split(' ')[4])
+                  count.push(element['count'])
+                  average += element['count']
+                })
 
-    //           average /= date.length
+              average /= date.length
 
-    //           for (let index = 0; index < date.length; index++) {
-    //               average_list.push(average)
+              for (let index = 0; index < date.length; index++) {
+                  average_list.push(average)
                 
-    //           }
-    //         socket.emit('chart_data', {date, count, average_list})
+              }
+            socket.emit('chart_data', {date, count, average_list})
               
-    //         })}, 1000);
+            })}, 1000);
           
-    //   }
-    //   else if (val == 3) {
-    //     chart_interval = setInterval(function(){        
-    //       db.query("SELECT date, count FROM test_stats  WHERE id >= (SELECT max(id) FROM test_stats) - 10", function (err, results) { 
+      }
+      else if (val == 3) {
+        chart_interval = setInterval(function(){        
+          db.query("SELECT date, count FROM test_stats  WHERE id >= (SELECT max(id) FROM test_stats) - 10", function (err, results) { 
 
-    //         var date = []
-    //           var count = []
-    //           var average = 0
-    //           var average_list = []
+            var date = []
+              var count = []
+              var average = 0
+              var average_list = []
 
-    //           results.forEach(element => {
-    //               date.push(element['date'].toString().split(' ')[4])
-    //               count.push(element['count'])
-    //               average += element['count']
-    //             })
+              results.forEach(element => {
+                  date.push(element['date'].toString().split(' ')[4])
+                  count.push(element['count'])
+                  average += element['count']
+                })
 
-    //           average /= date.length
+              average /= date.length
 
-    //           for (let index = 0; index < date.length; index++) {
-    //               average_list.push(average)
+              for (let index = 0; index < date.length; index++) {
+                  average_list.push(average)
                 
-    //           }
-    //         socket.emit('chart_data', {date, count, average_list})
+              }
+            socket.emit('chart_data', {date, count, average_list})
               
-    //         })}, 1000);
+            })}, 1000);
           
-    // }
-    // })
+    }
+    })
 
     socket.on('get_activity', function (val) {
 
