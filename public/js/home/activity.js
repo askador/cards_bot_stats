@@ -1,16 +1,16 @@
 $(document).ready(function(){
   activity = $('.activity');
-
-  var socket = io.connect("https://test-stats-site.herokuapp.com/", {       
-    reconnectionDelay: 1000,
-    reconnection:true,
-    reconnectionAttempts: 10,
-    transports: ['websocket'],
-    agent: false, // [2] Please don't set this to true
-    upgrade: false,
-    rejectUnauthorized: false 
-}
-);
+  var socket = io()
+//   var socket = io.connect("https://test-stats-site.herokuapp.com/", {       
+//     reconnectionDelay: 1000,
+//     reconnection:true,
+//     reconnectionAttempts: 10,
+//     transports: ['websocket'],
+//     agent: false, // [2] Please don't set this to true
+//     upgrade: false,
+//     rejectUnauthorized: false 
+// }
+// );
 
   slider = $('input[type=range]')
 

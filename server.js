@@ -12,11 +12,11 @@ var port = process.env.PORT || 8080
 var mysql = require('mysql');
 
  db = mysql.createConnection({
-    host: 'eu-cdbr-west-03.cleardb.net',
+    host: 'd3y0lbg7abxmbuoi.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
     port: '3306',
-    user: 'b095caf0ea58d7',
-    password: '1da10bb7',
-    database: 'heroku_e3bb9c24356ef8b'
+    user: 'uqqfoac95bh5bmj9',
+    password: 'nbrh8or2kc44lap1',
+    database: 'zcmxf9w0f9i04nyx'
   });
 
 db.connect(function (err) {
