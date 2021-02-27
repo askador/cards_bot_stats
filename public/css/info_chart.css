@@ -1,0 +1,22 @@
+
+.info__chart {
+    /*outline: 2px solid black;*/ 
+
+    width: 70%;
+    height: auto;
+
+    padding-top: 30px;
+
+}
+
+.chart {
+    /* outline: 2px solid black;  */
+
+    width: 100%;
+    height: auto;
+}
+
+.img {
+    width: 100%;
+    height: auto;
+}

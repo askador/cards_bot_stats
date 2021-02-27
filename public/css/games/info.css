@@ -1,0 +1,26 @@
+.info {
+    /* outline: 2px solid black; */
+
+    color: white;
+
+    width: 80%;
+    height: auto;
+    position: relative;
+    display: block;
+    margin: -10% auto;
+    
+}
+
+.general {
+    width: 100%;
+    height: auto;
+    position: relative;
+
+    display: flex;
+    margin-top: 20%;
+    padding-bottom: 3%;
+}
+
+.games {
+    display: block;
+}

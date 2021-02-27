@@ -3,4 +3,16 @@
         height: 45%;
         margin-top: 15%;
     }
+
+    .details {
+        border-width: 3px;
+    }
+
+    .details__bar {
+        height: 35px;
+    }
+
+    .details__ico {
+        transform: scale(0.8);
+    }
 }

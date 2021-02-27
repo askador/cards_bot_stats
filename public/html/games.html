@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>STATS</title>
+
+        <link rel="stylesheet" type="text/css" href="/css/base.css">
+        <link rel="stylesheet" type="text/css" href="/css/slider.css">
+        <link rel="stylesheet" type="text/css" href="/css/info_chart.css">
+        <link rel="stylesheet" type="text/css" href="/css/games/info.css">
+        <link rel="stylesheet" type="text/css" href="/css/games/game_info.css">
+        <link rel="stylesheet" type="text/css" href="/css/games/games.css">
+        <link rel="stylesheet" type="text/css" href="/css/games/general.css">
+        <link rel="stylesheet" type="text/css" href="/css/games/info_text.css">
+        <link rel="stylesheet" type="text/css" href="/css/media/base.css">
+        <link rel="stylesheet" type="text/css" href="/css/media/games/1100px.css">
+        <link rel="stylesheet" type="text/css" href="/css/media/games/660px.css">
+        <link rel="stylesheet" type="text/css" href="/css/media/games/400px.css">
+        <link rel="shortcut icon" type="image/x-icon" href="/ico/lens.ico">
+       
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js"></script>
+ 
+    </head>
+
+    <body>
+        <header class="header">
+            <div class="header__body">
+                <a href="/" class="header__logo">
+                    CARDS BOT STATS
+                </a>
+                
+                <div class="header__burger">
+                    <img src="/img/burger.png">
+                </div>
+
+                <div class="header__menu">
+                    <ul class="header__list">
+                        <li><a href="/" class="header__link">Главная</a></li>
+                        <li><a href="/html/users.html" class="header__link">Пользователи</a></li>
+                        <li><a href="/html/chats.html" class="header__link">Чаты</a></li>
+                        <li><a href="/html/more.html" class="header__link">Другое</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <script type="text/javascript" src="/js/menu.js"></script>
+
+        </header>
+    
+        <div class="info">
+            <div class="general">
+                <div class="general__text">
+                    <div class="title">Игры</div>
+                    <div class="general__stats">
+                        Активность:<br>
+                        Всего сыграно:<br>
+                        <script type="text/javascript" src="/js/games/general/jquery/activity.js"></script>
+
+                    </div>
+                    <div class="general__online">
+                        Онлайн:
+                        <script type="text/javascript" src="/js/games/general/jquery/online.js"></script>
+                    </div>
+                    <div class="general__period">За ?</div>
+                    <div class="general__period__data">
+                        Всего:<br>
+                        Минимум:<br>
+                        Максимум:
+                    </div>
+                    <script type="text/javascript" src="/js/games/general/jquery/period_data.js"></script>
+
+                </div>
+                
+                <div class="info__chart">
+                    <div class="chart">
+                        <canvas id="general_chart"></canvas>
+                        <script type="module" type="text/javascript" src="/js/games/general/chart/chart.js"></script>
+                    </div>
+                    <div class="slider">
+                        <input id="general_slider" type="range" min="0" max="4" value="2">
+                        <script type="module" type="text/javascript"src="/js/games/general/jquery/slider.js"></script>
+                    </div>
+                </div>
+            </div>
+
+            <div class="games">
+                <div class="game__info">
+                    <div class="game__bar durak">
+                        <div class="game__bar__title">Дурак</div> 
+                        <div class="game__bar__ico durak"></div>
+                    </div>
+                    <div class="game__stats durak">
+                        <div class="info__text">
+                            <div class="activity durak">
+                                Активность:<br>
+                                Всего сыграно:
+                                <script type="text/javascript" src="/js/games/durak/jquery/activity.js"></script>
+
+                            </div>
+                            <div class="online durak">
+                                Онлайн:
+                                <script type="text/javascript" src="/js/games/durak/jquery/online.js"></script>
+
+                            </div>
+                            <div class="period durak">За ?</div>
+                            <div class="period__data durak">
+                                Всего:<br>
+                                Минимум:<br>
+                                Максимум:
+                            </div>
+                            <script type="text/javascript" src="/js/games/durak/jquery/period_data.js"></script>
+
+                        </div>
+
+                        <div class="info__chart">
+                            <div class="chart">
+                                <canvas id="durak_chart"></canvas>
+                                <script type="module" type="text/javascript" src="/js/games/durak/chart/chart.js"></script>
+                            </div>
+                            <div class="slider">
+                                <input id="durak_slider" type="range" min="0" max="4" value="2">
+                                <script type="module" type="text/javascript"src="/js/games/durak/jquery/slider.js"></script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space"></div>
+
+                <div class="game__info">
+                    <div class="game__bar debertz">
+                        <div class="game__bar__title">Деберц</div> 
+                        <div class="game__bar__ico debertz"></div>
+                    </div>
+                    <div class="game__stats debertz">
+                        <div class="info__text">
+                            
+                            <div class="activity debertz">
+                                Активность:<br>
+                                Всего сыграно:
+                                <script type="text/javascript" src="/js/games/debertz/jquery/activity.js"></script>
+                            </div>
+                            <div class="online debertz">
+                                Онлайн:
+                                <script type="text/javascript" src="/js/games/debertz/jquery/online.js"></script>
+                            </div>
+                            <div class="period debertz"></div>
+                            <div class="period__data debertz">
+                                Всего:<br>
+                                Минимум:<br>
+                                Максимум:
+                            </div>
+                            <script type="text/javascript" src="/js/games/debertz/jquery/period_data.js"></script>
+                        </div>
+
+                        <div class="info__chart">
+                            <div class="chart">
+                                <canvas id="debertz_chart"></canvas>
+                                <script type="module" type="text/javascript" src="/js/games/debertz/chart/chart.js"></script>
+                            </div>
+                            <div class="slider">
+                                <input id="debertz_slider" type="range" min="0" max="4" value="2">
+                                <script type="module" type="text/javascript"src="/js/games/debertz/jquery/slider.js"></script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space"></div>
+
+                <script type="text/javascript" src="/js/games/game_durak_open.js"></script>
+                <script type="text/javascript" src="/js/games/game_debertz_open.js"></script>
+                <script type="module" type="text/javascript" src="/js/games/resize.js"></script>
+            
+
+
+            </div>
+
+
+        </div>
+    </body>
+</html>

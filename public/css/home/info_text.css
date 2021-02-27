@@ -7,6 +7,7 @@
     height: 98%;
 
     padding-left: 20px;
+    letter-spacing: 1.2px;
 
 }
 .title {    
@@ -19,13 +20,16 @@
 
 .activity {
     
-    font-size: 1.2vw;
+    padding-left: 10px;
+
+    font-size: 1.26vw;
     line-height: 150%;
     padding-top: 8%;
 }
 
-.text {
+.general {
     /*outline: 2px solid black;*/
+    padding-left: 10px;
 
     font-size: 1.2vw;
     line-height: 170%;

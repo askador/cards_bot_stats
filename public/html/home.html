@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>STATS</title>
+
+        <link rel="stylesheet" type="text/css" href="/css/base.css">
+        <link rel="stylesheet" type="text/css" href="/css/slider.css">
+        <link rel="stylesheet" type="text/css" href="/css/info_chart.css">
+        <link rel="stylesheet" type="text/css" href="/css/home/info.css">
+        <link rel="stylesheet" type="text/css" href="/css/home/info_text.css">
+        <link rel="stylesheet" type="text/css" href="/css/home/info_details.css">
+        <link rel="stylesheet" type="text/css" href="/css/media/base.css">
+        <link rel="stylesheet" type="text/css" href="/css/media/home/450px.css">
+        <link rel="stylesheet" type="text/css" href="/css/media/home/660px.css">
+        <link rel="stylesheet" type="text/css" href="/css/media/home/1000px.css">
+        <link rel="stylesheet" type="text/css" href="/css/media/home/1250px.css">
+        <link rel="stylesheet" type="text/css" href="/css/media/home/1500px.css">
+        <link rel="shortcut icon" type="image/x-icon" href="/ico/lens.ico">
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js"></script>
+        
+    </head>
+
+    <body>
+        <header class="header">
+            <div class="header__body">
+                <a href="/" class="header__logo">
+                    CARDS BOT STATS
+                </a>
+                
+                <div class="header__burger">
+                    <img src="/img/burger.png">
+                </div>
+
+                <div class="header__menu">
+                    <ul class="header__list">
+                        <li><a href="/html/users.html" class="header__link">Пользователи</a></li>
+                        <li><a href="/html/chats.html" class="header__link">Чаты</a></li>
+                        <li><a href="/html/games.html" class="header__link">Игры</a></li>
+                        <li><a href="/html/more.html" class="header__link">Другое</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <script type="text/javascript" src="/js/menu.js"></script>
+
+        </header>
+    
+        <div class="info">
+            <div class="info__text">
+                <div class="title">Общая статистика<br></div>
+                <div class="activity">
+                    Активность: ?
+                    <script type="text/javascript" src="/js/home/jquery/activity.js"></script>
+                </div>
+
+                <div class="general"> 
+                    Пользователей: ${data['users']}<br> 
+                    Чатов: ${data['chats']}<br>
+                    Игр: ${data['games']}` 
+                    <script type="text/javascript" src="/js/home/jquery/get_general.js"></script>
+                </div>
+
+                <div class="details">
+                    <div class="details__bar">
+                        <div class="details__title">Подробнее</div> 
+                        <div class="details__ico"></div>
+                    </div>
+                    <div class="details__text">
+                        <div class="details__text__title">
+                            Онлайн
+                        </div>
+                        <div class="details__text__entity">
+                            Игр: ${games}<br>
+                            Пользователи: ${users}
+                            <script type="text/javascript" src="/js/home/jquery/details_online.js"></script>
+                        </div>
+                        <div class="details__text__title">
+                            За ?
+                            <div class="details__text__period"></div>
+                        </div>
+                        <div class="details__text__period__data">
+                            Игр: ${games}<br>
+                            Чатов: ${chats}<br>
+                            Пользователей: ${users}<br>
+                            <script type="text/javascript" src="/js/home/jquery/details_data.js"></script>
+                        </div>
+                    </div>
+                    <script type="text/javascript" src="/js/home/jquery/details_open.js"></script>
+                </div>
+            </div>
+            
+            <div class="info__chart">
+                <div class="chart">
+                    <canvas id="myChart"></canvas>
+                    <script type="module" type="text/javascript" src="/js/home/chart/chart.js"></script>
+                    <script type="module" type="text/javascript" src="/js/home/jquery/resize.js"></script>
+                </div>
+                <div class="slider">
+                    <input type="range" min="0" max="4" value="2">
+                    <script type="module" type="text/javascript"src="/js/home/jquery/slider.js"></script>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

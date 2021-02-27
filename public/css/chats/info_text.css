@@ -1,0 +1,52 @@
+.info__text{
+    /*outline: 2px solid black;*/
+
+    color: white;
+
+    width: 40%;
+    height: 98%;
+
+    padding-left: 20px;
+
+    letter-spacing: 1.5px;
+
+
+}
+.title {    
+    /*outline: 2px solid black;*/
+
+    font-size: 2.18vw;
+    padding-top: 5%;  
+
+}
+
+.activity {
+    padding-top: 8%;
+}
+
+.activity, .online {
+    
+    padding-left: 12px;
+
+    font-size: 1.21vw;
+    line-height: 150%;
+}
+
+.period {
+    padding-left: 10px;
+
+    font-size: 1.5vw;
+    line-height: 150%;
+    padding-top: 3%;
+    /* padding-bottom: 5%; */
+
+}
+
+.period__data {
+    padding-left: 18px;
+
+    font-size: 1.21vw;
+    line-height: 150%;
+    padding-top: 3%;
+}
+

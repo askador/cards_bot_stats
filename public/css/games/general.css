@@ -1,0 +1,48 @@
+.general__text {
+
+    width: 40%;
+    height: auto;
+
+    display: block;
+
+    margin: 5% auto;
+    margin-left: 5%;
+
+    letter-spacing: 1.2px;
+
+}
+
+.title {    
+    
+    font-size: 2.18vw;
+
+}
+
+.general__stats {
+    padding-top: 10%;
+}
+
+.general__stats, .general__online {
+    /* outline: 2px solid black; */
+    padding-left: 10px;
+
+    font-size: 1.2vw;
+    line-height: 170%;
+    /* padding-bottom: 2%; */
+}
+
+.general__period {
+    padding-left: 10px;
+
+    font-size: 1.5vw;
+    line-height: 150%;
+    padding-top: 8%;
+}
+
+.general__period__data {
+    padding-left: 10px;
+
+    font-size: 1.21vw;
+    line-height: 150%;
+    padding-top: 2%;
+}

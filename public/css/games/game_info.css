@@ -1,0 +1,140 @@
+
+.game__info {
+    /* outline: 2px solid black; */
+
+    width: 100%;
+    height: auto;
+
+    background-color: rgba(54, 87, 163, 0.3);
+
+    border-radius: 15px 15px 15px 15px;
+    border-color: rgba(54, 87, 163, 1);
+    border-style: solid;
+
+    align-items: center;
+    
+}
+
+.game__stats.durak, .game__stats.debertz {
+    /* outline: 2px solid black; */
+
+    display: none;
+    padding-bottom: 50px;
+}
+
+.info__text{
+    /* outline: 2px solid black; */
+
+    color: white;
+    display: block;
+
+    width: 40%;
+    height: 98%;
+
+    margin-top: 80px;
+    margin-left: 8%;
+
+    letter-spacing: 2px;
+
+
+}
+
+.game__bar.durak, .game__bar.debertz {
+
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100.2%;
+    height: 48px;
+
+    margin-left: -2px;
+    margin-top: -2px;
+
+    background-color: #3657A3;
+    border-radius: 10px 10px 10px 10px;
+
+    cursor: pointer;
+}
+
+.game__bar__title {
+    
+    padding-left: 40px;
+    letter-spacing: 2px;
+    color: white;
+    font-size: 1.4vw;
+    /* line-height: 170%; */
+
+}
+
+
+.activity, .online, .period, .period__data {
+    /* outline: 2px solid black; */
+
+    /* padding-left: 10px; */
+
+    font-size: 1.2vw;
+    /* line-height: 150%; */
+    /* padding-top: 0%; */
+}
+
+.period {
+    padding-top: 30px;
+}
+
+
+
+.game__bar__ico.durak, .game__bar__ico.debertz{
+    display: block;
+    width: 10px;
+    height: 8px;
+    
+    position: relative;
+    margin-right: 5%;
+    margin-top: 2px;
+
+}
+
+.game__bar__ico.durak::before,
+.game__bar__ico.durak::after,
+.game__bar__ico.debertz::after,
+.game__bar__ico.debertz::before{
+    content: '';
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    border-radius: 30%;
+
+    transition: all 0.3s ease 0s;
+    
+}
+
+.game__bar__ico.durak::before, .game__bar__ico.debertz::before{
+    top: 0;
+    transform: translate(-4.1px, 1.4px) rotate(-45deg) ;
+}
+
+.game__bar__ico.durak::after, .game__bar__ico.debertz::after {
+    transform:  translate(-10px, -2.8px) rotate(45deg);
+    bottom: 0;
+}
+
+
+.game__bar__ico.durak.open::before, .game__bar__ico.debertz.open::before{
+    top: 0;
+    transform: translate(-4.1px, 1.4px) rotate(45deg) ;
+}
+
+.game__bar__ico.durak.open::after, .game__bar__ico.debertz.open::after {
+    transform:  translate(-10px, -2.8px) rotate(-45deg);
+    bottom: 0;
+}
+
+
+.info__chart {
+    margin-right: 5%;
+}
+
+

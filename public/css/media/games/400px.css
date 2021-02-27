@@ -1,0 +1,101 @@
+@media (min-width: 0px) and (max-width: 400px) { 
+
+    .info {
+        padding-top: 50px;
+        width: 94%;
+    }
+
+    .general {
+        display: block;
+
+        margin-top: 30%;
+        padding-bottom: 3%;
+    }
+
+    .general__text {
+        width: 100%;
+
+        margin: 0% auto;
+        margin-left: 0%;
+
+        text-align: center;
+    }
+
+    .title {
+        font-size: 30px;
+    }
+
+    .general__stats {
+        padding-top: 8%;
+    }
+
+    .general__stats, .general__online {
+        /* outline: 2px solid black; */
+        padding-left: 0px;
+    
+        font-size: 20px;
+        line-height: 140%;
+        /* padding-bottom: 2%; */
+    }
+    
+    .general__period {
+        padding-left: 0px;
+    
+        font-size: 24px;
+        line-height: 150%;
+        padding-top: 5%;
+    }
+    
+    .general__period__data {
+        padding-left: 0px;
+    
+        font-size: 20px;
+        line-height: 130%;
+        padding-top: 2%;
+    }
+    
+    .info__chart {
+        width: 98%;
+        height: auto;
+        margin: 0% auto;
+    }
+
+    .game__info {
+        width: auto;
+    }
+
+
+    .game__bar.durak, .game__bar.debertz {
+        width: 100.6%;
+    }
+
+    .game__bar__title {
+        font-size: 22px;
+     }
+
+     .info__text{
+        /* outline: 2px solid black; */
+    
+        color: white;
+        display: block;
+    
+        width: 100%;
+        height: auto;
+    
+        margin-top: 5%;
+        margin-left: 0%;
+    
+        letter-spacing: 1px;
+        text-align: center;
+    
+    }
+
+    .activity, .online, .period, .period__data {
+        font-size: 20px;
+    }
+
+    .period {
+        padding-bottom: 10px;
+    }
+
+}
