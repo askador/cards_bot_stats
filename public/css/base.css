@@ -89,3 +89,11 @@ html, body {
   font-size: 18px;
 }
 
+
+@font-face {
+  font-family: "Franklin Gothic Medium";
+
+  src: url("font/framd.ttf") format("truetype"); 
+  font-style: normal; 
+  font-weight: normal; 
+}
