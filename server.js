@@ -6,7 +6,7 @@ const io = require('socket.io')(server);
 const mysql = require('mysql');
 const port = process.env.PORT || 8080
 
-const delay = 2*1000 
+const delay = 600000*1*1000 
 const online_delay = 1000000*1*1000
 const stats_id_range = {
   // в часах
@@ -48,8 +48,6 @@ app.get('/more.html', function(req, res){
   res.sendFile(__dirname + '/public/html/more.html');
 });
 
-
-var connetions = []
 
 /**  show interval  */
 var intervals = {
