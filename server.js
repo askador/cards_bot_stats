@@ -6,7 +6,7 @@ const io = require('socket.io')(server);
 const mysql = require('mysql');
 const port = process.env.PORT || 8080
 
-const delay = 10000*60*1000 
+const delay = 2*1000 
 const online_delay = 1000000*1*1000
 const stats_id_range = {
   // в часах
@@ -49,40 +49,58 @@ app.get('/more.html', function(req, res){
 });
 
 
+var connetions = []
 
 /**  show interval  */
-/** home page */
-var home_slider_change_interval = null
-var home_activity_interval = null
-var home_get_general_interval = null
-var home_online_interval = null
-var home_period_data_interval = null
+var intervals = {
+  /** home page */
+  'home_slider_change_interval' : null,
+  'home_activity_interval' : null,
+  'home_get_general_interval' : null,
+  'home_online_interval' : null,
+  'home_period_data_interval' : null,
 
-/** chats page */
-var chats_slider_change_interval = null
-var chats_activity_interval = null
-var chats_online_interval = null
-var chats_period_data_interval = null
-
-/** games page */
-var games_general_slider_change_interval = null
-var games_general_activity_interval = null
-var games_general_online_interval = null
-var games_general_period_data_interval = null
-
-var games_durak_activity_interval = null
-var games_durak_online_interval = null
-var games_durak_period_data_interval = null
-var games_durak_slider_change_interval = null
-
-var games_debertz_activity_interval = null
-var games_debertz_online_interval = null
-var games_debertz_period_data_interval = null
-var games_debertz_slider_change_interval = null
+  /** users page */
+  'users_slider_change_interval' : null,
+  'users_activity_interval' : null,
+  'users_online_interval' : null,
+  'users_period_data_interval' : null,
+  
+  /** chats page */
+  'chats_slider_change_interval' : null,
+  'chats_activity_interval' : null,
+  'chats_online_interval' : null,
+  'chats_period_data_interval' : null,
+  
+  /** games page */
+  'games_general_slider_change_interval' : null,
+  'games_general_activity_interval' : null,
+  'games_general_online_interval' : null,
+  'games_general_period_data_interval' : null,
+  
+  'games_durak_activity_interval' : null,
+  'games_durak_online_interval' : null,
+  'games_durak_period_data_interval' : null,
+  'games_durak_slider_change_interval' : null,
+  
+  'games_debertz_activity_interval' : null,
+  'games_debertz_online_interval' : null,
+  'games_debertz_period_data_interval' : null,
+  'games_debertz_slider_change_interval' : null,
+}
 
 
 
 io.sockets.on('connection', function (socket) {
+
+  socket.on('disconnect', function () {
+    if (io.sockets.adapter.rooms.size == 0) {
+      for (interval in intervals) {
+        clearInterval(intervals[interval])
+      }
+    }
+  })
+
   
   /** ------------------------------  H O M E -- P A G E  ------------------------------- */
   var home_get_activity = require('./socket_functions/home/get_activity')
@@ -92,39 +110,40 @@ io.sockets.on('connection', function (socket) {
   var home_slider_change = require('./socket_functions/home/slider_change')
   
   socket.on('home_get_activity', function () {
-    clearInterval(home_activity_interval);
-    home_activity_interval = setInterval(function(){
-      home_get_activity(socket)
+    clearInterval(intervals['home_activity_interval']);
+    intervals['home_activity_interval'] = setInterval(function(){
+      home_get_activity(socket)   
     }, delay)
     
   })
+
   
   socket.on('home_get_general', function () {
-    clearInterval(home_get_general_interval)
-    home_get_general_interval = setInterval(function(){        
+    clearInterval(intervals['home_get_general_interval'])
+    intervals['home_get_general_interval'] = setInterval(function(){        
       home_get_general(socket)
     }, delay);
   })
 
   socket.on('home_get_online', function () {
-    clearInterval(home_online_interval);
-    home_online_interval = setInterval(function(){        
+    clearInterval(intervals['home_online_interval']);
+    intervals['home_online_interval'] = setInterval(function(){        
       home_get_online(socket)  
     }, online_delay);
 
   })
 
   socket.on('home_get_period_data', function (slider_val) {
-    clearInterval(home_period_data_interval)
-    home_period_data_interval = setInterval(function(){        
+    clearInterval(intervals['home_period_data_interval'])
+    intervals['home_period_data_interval'] = setInterval(function(){        
       home_get_period_data(socket, stats_id_range[slider_val])
     }, delay);
       
   })
 
   socket.on('home_slider_change', function(slider_val) {   
-    clearInterval(home_slider_change_interval);     
-    home_slider_change_interval = setInterval(function(){   
+    clearInterval(intervals['home_slider_change_interval']);     
+    intervals['home_slider_change_interval'] = setInterval(function(){   
       home_slider_change(socket, stats_id_range[slider_val])
     }, delay)
     
@@ -132,6 +151,40 @@ io.sockets.on('connection', function (socket) {
 
   /** ------------------------------------------------------------------------------------- */
 
+  /** ------------------------------  U S E R S -- P A G E  ------------------------------- */
+  var users_activity = require('./socket_functions/users/get_activity')
+  var users_online = require('./socket_functions/users/get_online')  
+  var users_get_period_data = require('./socket_functions/users/get_period_data')
+  var users_slider_change = require('./socket_functions/users/slider_change')  
+  socket.on('users_get_activity', function (slider_val) {
+    clearInterval(intervals['users_activity_interval'])
+    intervals['users_activity_interval'] = setInterval(function(){
+      users_activity(socket, stats_id_range[slider_val])
+    }, delay)
+  })
+
+  socket.on('users_get_online', function () {
+    clearInterval(intervals['users_online_interval'])
+    intervals['users_online_interval'] = setInterval(function(){
+      users_online(socket)
+    }, online_delay)
+  })
+  
+  socket.on('users_get_period_data', function (slider_val) {
+    clearInterval(intervals['users_period_data_interval'])
+    intervals['users_period_data_interval'] = setInterval(function(){   
+      users_get_period_data(socket, stats_id_range[slider_val])
+    }, delay)
+   
+  })
+
+  socket.on('users_slider_change', function (slider_val) {
+  clearInterval(intervals['users_slider_change_interval'])
+  intervals['users_slider_change_interval'] = setInterval(function(){   
+    users_slider_change(socket, stats_id_range[slider_val])
+  }, delay)
+  })
+  /** ------------------------------------------------------------------------------------- */
 
   /** ------------------------------  C H A T S -- P A G E  ------------------------------- */
   var chats_activity = require('./socket_functions/chats/get_activity')
@@ -140,30 +193,30 @@ io.sockets.on('connection', function (socket) {
   var chats_slider_change = require('./socket_functions/chats/slider_change')  
 
   socket.on('chats_get_activity', function (slider_val) {
-    clearInterval(chats_activity_interval)
-    chats_activity_interval = setInterval(function(){
+    clearInterval(intervals['chats_activity_interval'])
+    intervals['chats_activity_interval'] = setInterval(function(){
       chats_activity(socket, stats_id_range[slider_val])
     }, delay)
   })
 
   socket.on('chats_get_online', function () {
-    clearInterval(chats_online_interval)
-    chats_online_interval = setInterval(function(){
+    clearInterval(intervals['chats_online_interval'])
+    intervals['chats_online_interval'] = setInterval(function(){
       chats_online(socket)
     }, online_delay)
   })
   
   socket.on('chats_get_period_data', function (slider_val) {
-    clearInterval(chats_period_data_interval)
-    chats_period_data_interval = setInterval(function(){   
+    clearInterval(intervals['chats_period_data_interval'])
+    intervals['chats_period_data_interval'] = setInterval(function(){   
       chats_get_period_data(socket, stats_id_range[slider_val])
     }, delay)
    
   })
 
   socket.on('chats_slider_change', function (slider_val) {
-  clearInterval(chats_slider_change_interval)
-  chats_slider_change_interval = setInterval(function(){   
+  clearInterval(intervals['chats_slider_change_interval'])
+  intervals['chats_slider_change_interval'] = setInterval(function(){   
     chats_slider_change(socket, stats_id_range[slider_val])
   }, delay)
   })
@@ -180,29 +233,29 @@ io.sockets.on('connection', function (socket) {
   var games_general_slider_change = require('./socket_functions/games/general/slider_change')  
 
   socket.on('games_general_activity', function(){
-    clearInterval(games_general_activity_interval)
-    games_general_activity_interval = setInterval(function(){
+    clearInterval(intervals['games_general_activity_interval'])
+    intervals['games_general_activity_interval'] = setInterval(function(){
       games_general_activity(socket)
     }, delay)
   })
 
   socket.on('games_general_online', function(){
-    clearInterval(games_general_online_interval)
-    games_general_online_interval = setInterval(function(){
+    clearInterval(intervals['games_general_online_interval'])
+    intervals['games_general_online_interval'] = setInterval(function(){
       games_general_online(socket)
     }, online_delay)
   })
 
   socket.on('games_general_period_data', function(){
-    clearInterval(games_general_period_data_interval)
-    games_general_period_data_interval = setInterval(function(){
+    clearInterval(intervals['games_general_period_data_interval'])
+    intervals['games_general_period_data_interval'] = setInterval(function(){
       games_general_period_data(socket)
     }, delay)
   })
 
   socket.on('games_general_slider_change', function(){
-    clearInterval(games_general_slider_change_interval)
-    games_general_slider_change_interval = setInterval(function(){
+    clearInterval(intervals['games_general_slider_change_interval'])
+    intervals['games_general_slider_change_interval'] = setInterval(function(){
       games_general_slider_change(socket)
     }, delay)
   })
@@ -214,29 +267,29 @@ io.sockets.on('connection', function (socket) {
   var games_durak_slider_change = require('./socket_functions/games/durak/slider_change')  
 
   socket.on('games_durak_activity', function(){
-    clearInterval(games_durak_activity_interval)
-    games_durak_activity_interval = setInterval(function(){
+    clearInterval(intervals['games_durak_activity_interval'])
+    intervals['games_durak_activity_interval'] = setInterval(function(){
       games_durak_activity(socket)
     }, delay)
   })
 
   socket.on('games_durak_online', function(){
-    clearInterval(games_durak_online_interval)
-    games_durak_online_interval = setInterval(function(){
+    clearInterval(intervals['games_durak_online_interval'])
+    intervals['games_durak_online_interval'] = setInterval(function(){
       games_durak_online(socket)
     }, online_delay)
   })
 
   socket.on('games_durak_period_data', function(){
-    clearInterval(games_durak_period_data_interval)
-    games_durak_period_data_interval = setInterval(function(){
+    clearInterval(intervals['games_durak_period_data_interval'])
+    intervals['games_durak_period_data_interval'] = setInterval(function(){
       games_durak_period_data(socket)
     }, delay)
   })
 
   socket.on('games_durak_slider_change', function(){
-    clearInterval(games_durak_slider_change_interval)
-    games_durak_slider_change_interval = setInterval(function(){
+    clearInterval(intervals['games_durak_slider_change_interval'])
+    intervals['games_durak_slider_change_interval'] = setInterval(function(){
       games_durak_slider_change(socket)
     }, delay)
   })
@@ -248,29 +301,29 @@ io.sockets.on('connection', function (socket) {
   var games_debertz_slider_change = require('./socket_functions/games/debertz/slider_change')  
 
   socket.on('games_debertz_activity', function(){
-    clearInterval(games_debertz_activity_interval)
-    games_debertz_activity_interval = setInterval(function(){
+    clearInterval(intervals['games_debertz_activity_interval'])
+    intervals['games_debertz_activity_interval'] = setInterval(function(){
       games_debertz_activity(socket)
     }, delay)
   })
 
   socket.on('games_debertz_online', function(){
-    clearInterval(games_debertz_online_interval)
-    games_debertz_online_interval = setInterval(function(){
+    clearInterval(intervals['games_debertz_online_interval'])
+    intervals['games_debertz_online_interval'] = setInterval(function(){
       games_debertz_online(socket)
     }, online_delay)
   })
 
   socket.on('games_debertz_period_data', function(){
-    clearInterval(games_debertz_period_data_interval)
-    games_debertz_period_data_interval = setInterval(function(){
+    clearInterval(intervals['games_debertz_period_data_interval'])
+    intervals['games_debertz_period_data_interval'] = setInterval(function(){
       games_debertz_period_data(socket)
     }, delay)
   })
 
   socket.on('games_debertz_slider_change', function(){
-    clearInterval(games_debertz_slider_change_interval)
-    games_debertz_slider_change_interval = setInterval(function(){
+    clearInterval(intervals['games_debertz_slider_change_interval'])
+    intervals['games_debertz_slider_change_interval'] = setInterval(function(){
       games_debertz_slider_change(socket)
     }, delay)
   })

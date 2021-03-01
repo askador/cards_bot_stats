@@ -17,8 +17,9 @@ $(document).ready(function(){
     activity.html(html);
   }
   
-/**
+ /**
   socket.emit('home_get_activity', slider.val());
+ 
   socket.once('home_activity', function(data) {
     to_html(data)
   })

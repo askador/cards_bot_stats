@@ -6,6 +6,8 @@ var calculate_activity = require('../calculate_activity')
  */
 module.exports = function get_activity(socket) {
 
+    console.log("WORKING")
+
     /**
      * Достаем time и count за последний месяц из users, chats, games
      * для каждого time устанавливаем log( users(count) * chats(count) * games(count) )
